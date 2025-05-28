@@ -1,26 +1,82 @@
-import styled from 'styled-components';
-
+import main from "../assets/images/main.svg";
+import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
+import styled from "styled-components";
 const Landing = () => {
   return (
-    <Wrapper>
-      <h1>Landing Page</h1>
-      <p>Welcome to Jobify</p>
-    </Wrapper>
+    <StyledWrapper>
+      <nav>
+        <Logo />
+      </nav>
+      <div className="container page">
+        {/* info */}
+        <div className="info">
+          <h1>
+            job <span>tracking</span> app
+          </h1>
+          <p>
+            Effortlessly manage your job applications, interviews, and offers in one place. Stay organized and take control of your tech career journey with Jobify. Track your progress, set reminders, and never miss an opportunity again!
+          </p>
+          <Link to="/register" className="btn register-link">
+            Register
+          </Link>
+          <Link to="/login" className="btn">
+            Login / Demo User
+          </Link>
+        </div>
+        <img src={main} alt="job hunt" className="img main-img" />
+      </div>
+    </StyledWrapper>
   );
 };
-
-const Wrapper = styled.section`
-  text-align: center;
-  padding: 2rem;
-  background-color: #f1f5f8;
-
-  h1 {
-    color: #2c3e50;
+const StyledWrapper = styled.section`
+  nav {
+    height: var(--nav-height);
+    width: var(--fluid-width);
+    margin: 20px;
   }
-
+  .page {
+    min-height: calc(90vh - var(--nav-height));
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 400px;
+    column-gap: 3rem;
+    padding: 0 60px;
+  }
+  h1 {
+    font-weight: 700;
+    span {
+      color: var(--primary-500);
+    }
+    margin-bottom: 1.5rem;
+  }
   p {
-    color: #007bff;
+    line-height: 2;
+    color: var(--text-secondary-color);
+    margin-bottom: 1.5rem;
+    max-width: 35em;
+  }
+  .register-link {
+    margin-right: 1rem;
+  }
+  .main-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .btn {
+    padding: 12px 24px;
+    margin: 5px;
+    font-size: 1rem;
+  }
+  @media (max-width: 991px) {
+    .page {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+    }
+    .main-img {
+      display: none;
+    }
   }
 `;
-
 export default Landing;
